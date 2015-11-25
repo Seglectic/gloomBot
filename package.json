@@ -1,0 +1,12 @@
+{
+	"name":"gloomBot",
+	"version":"0.0.1",
+	"description": "A chatbot for #depression on irc.rizon.net",
+	"author": "Segger",
+	"node-irc":"0.0.3",
+
+	"dependencies": {
+		"irc": "^0.3.12"
+	}
+
+}
