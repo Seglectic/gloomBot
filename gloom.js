@@ -1,12 +1,11 @@
 /*
-	
 				 ❤ Gloom IRC bot ❤  
 	Gloom is a bot designed specifically for the #depression
 	channel on irc.rizon.net. Gloom's goal is to manage channel
 	bans with a user viewable web interface and scalable plugin
 	functionality.
 
-	Gloom uses the node 'irc'  library for connectivity and 
+	Gloom uses the node 'irc' library for connectivity and 
 	communication. IRC API available at: https://goo.gl/w9rsns
 		
 		-Segger 2016
@@ -14,14 +13,14 @@
 
 
 /*
-	Include libraries
+	Include static libraries
 */
-
-var express = require('express');
 var irc = require('irc');
 var fs = require('fs');
 
-
+/*
+	Load plugins
+*/
 fs.readdir('plugins',function(err,items){
 	for (var i = items.length - 1; i >= 0; i--) {
 		if(items[i].split('.')[1]=='js'){
@@ -32,18 +31,9 @@ fs.readdir('plugins',function(err,items){
 });
 
 
-
 /*
-	Setup express for web hosting 
+	Creates the main 'Gloom' object
 */
-var app = express();	 							//Make express instance
-app.use(express.static(__dirname + '/public'));		//Static file routing
-var port = 80;			 							//Define port
-var server = app.listen(port,function(){			//Start server instance from express.
-	console.log("Web server started on port",port);
-});
-
-
 
 var Gloom = {
 	name: "Gloom",
@@ -58,18 +48,43 @@ var Gloom = {
 		retryCount: 9999,
 		retryDelay: 5000
 	},
-
 }
 
+/*
+	Gloom's IRC object
+*/
 Gloom.chat = new irc.Client(Gloom.server,Gloom.name,Gloom.options)
+console.log("Gloom initialized :3")
+
 
 /*
-			Join Event
-	Welcomes users to channel
+		MOTD Event
 */
-Gloom.chat.addListener("join",function(target,nick){
-	if(nick == Gloom.chat.opt.nick){return;} //If self joins.
-	var msgs = ['Welcome, '+nick+'!','Hi '+nick, 'Sup '+nick]; //Array of random msgs
-	var msg = msgs[Math.floor(Math.random()*msgs.length)];		//Choose 1
-	Gloom.chat.say(target,msg);
+Gloom.chat.addListener('motd',function(motd){
+	console.log('\n IRC connection established. ( ˘ ³˘)♥\n')
 });
+
+/*
+		Join Event
+*/
+Gloom.chat.addListener("join",function(targ,nick){
+	welcum(Gloom,targ,nick);
+
+});
+
+/*
+		Message Event
+*/
+Gloom.chat.addListener('message',function(nick,targ,msg){
+	console.log('['+targ+'] ' +nick+": "+ msg)
+	var smsg = msg.split(' ');  //Split message into array
+	var command = smsg[0].toLowerCase(); 					  //First word of msg can be assumed a command
+	
+	//Processes commands
+	switch(command){
+		case "!slap": slap(Gloom,nick,targ,smsg); break;
+	}
+
+	
+});
+
