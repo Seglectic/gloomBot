@@ -1,41 +1,62 @@
+<!DOCTYPE html>
+<html>
 <head>
+	<meta charset="utf-8">
+	<title>Gloom Bot - Watch your Doom</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="jscolor.min.js"></script>
 	<script type="text/javascript" src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 </head>
-
 <body>
-	sockServe
+	<header>
 
-	<br>
+	</header>
+	<main>
+		<div class="sinners">
+			<section>
+				<h2></h2>
+			</section>
+		</div>
+	</main>
+	<footer>
 
-	<button
-		id = "clrBtn"
-    	class="jscolor {width:256, height:200, position:'bottom', valueElement:null,value:'66ccff'}"
-		style="width:256px; height:200px;"
-	></button>
-
+	</footer>
+	<script src="https://rawgithub.com/gka/chroma.js/master/chroma.min.js"></script>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<script>
-		/*
-			Test client JS script
-			Sends a stream of RGB values to the server
-		*/
-
-		this.sock = io.connect('http://wb.Spaghett.net:9001'); //Connect to the ledServe socket
-
-		var send = function(){
-			var clr = document.getElementById('clrBtn').style.backgroundColor;  //Gets color of button
-			clr = clr.replace('rgb(','');
-			clr = clr.replace(')','');
-			clr = clr.replace(/,/gi,'');
-			console.log(clr);
-			this.sock.emit('ledCLR',clr) //Send color through socket
+		var sampleData =  {
+			bans:[
+				{
+					name:"Douch32",
+					duration:1036800000,
+					ends:1477847809239,
+					reason:"He was a total douche..."
+				}
+			]
 		}
 
-		setInterval(send,100);
+		var i = setInterval(function(){
+			d3.selectAll("section").each(function(d){
+
+			})
+		},500)
+
+		d3.select(".sinners").html("")
+			.selectAll("section").data(sampleData.bans).enter()
+				.append("section").attr("class","sinner").call(function(parent){
+					parent.append("h2").text(function(d){
+						return d.name
+					})
+					parent.append("h3").text(function(d){
+						return (new Date((d.ends-Date.now()))).toISOString().slice(11, -1)
+					})
+					parent.append("svg").append("rect").attr("fill",function(d){
+						return chroma.mix("green","red",(d.ends-Date.now())/d.duration)
+					}).attr("x",0).attr("y",0).attr("height",50).attr("width",function(d){return (
+						(d.ends-Date.now())/d.duration*100
+					)+"%"})
+				})
 	</script>
-
-
 </body>
-
+</html>
