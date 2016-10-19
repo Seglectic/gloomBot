@@ -22,29 +22,34 @@ updateJSON = function(func){
 }
 
 samplePerson = {
-  name:"Tony",
+  name:"Hater",
   duration:15 //In Minutes
 }
 
 ban = function(personObj){
   var tmpF = function(arr){
     var nameFound = arr.filter(function(element){
-      return
-        typeof element === "object" &&
+      return typeof element === "object" &&
         element != null &&
         element.hasOwnProperty("name") &&
-        name === personObj.name
+        element.name === personObj.name
     }).length > 0
-
+    var tmpDuration = personObj.duration*60000
     if(!nameFound){
       //Add a new ban
       arr.push({
         name:personObj.name
-        ,duration:personObj.duration*60000 //Conversion from minutes to milliseconds
-        ,ends:Date.now()+(personObj.duration*60000)
+        ,duration:tmpDuration //Conversion from minutes to milliseconds
+        ,ends:Date.now()+tmpDuration
       })
     }else{
-      //TODO Extend the ban
+      arr = arr.map(function(element){
+        if(element.name === personObj.name){
+          element.duration += tmpDuration
+          element.ends += tmpDuration
+        }
+        return element
+      })
     }
     //Show off what we did. TODO Remove this when everything is purrfect.
     console.log(arr)
