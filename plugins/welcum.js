@@ -13,6 +13,7 @@
 */
 
 
+welcum = function(Gloom,targ,nick){
 	if(nick == Gloom.chat.opt.nick){return;} //If self joins.
 	var msgs = [
 		'Welcome, '+nick+'!', //Array of random msgs
@@ -21,4 +22,5 @@
 		"Hey look, it's "+nick+"!"
 	]; 
 	var msg = msgs[Math.floor(Math.random()*msgs.length)]; //Selects a random msg
+	Gloom.chat.say(targ,msg);
 }
