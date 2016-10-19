@@ -13,6 +13,8 @@ var tally = [ //How many we slappin with?
 	'a handful',
 	'a bag of',
 	'a truckload of',
+	'TONS of'
+	'NUM',
 ];
 
 var adject = [ //Adjective for slap object
@@ -42,9 +44,9 @@ var slapject = [ //Object to slap with
 slap = function(Gloom,nick,targ,smsg){
 	if (smsg.length<2){return};
 	var t = tally[Math.floor(Math.random()*tally.length)];
+	if (t=='NUM'){t=String(Math.floor(Math.random()*99999))} //Translates 'NUM' to a random number
 	var a = adject[Math.floor(Math.random()*adject.length)];
 	var s = slapject[Math.floor(Math.random()*slapject.length)];
 	var slapMsg = nick+" slapped "+smsg[1]+" with "+t+" "+a+" "+s+"!";
 	Gloom.chat.say(targ,slapMsg);
-
 }
