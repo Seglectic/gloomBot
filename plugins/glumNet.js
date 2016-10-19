@@ -8,7 +8,7 @@
 var express = require('express');
 var app = express();	 							//Make express instance
 app.use(express.static(__dirname + '/public'));		//Static file routing
-var port = 80;			 							//Define port
+var port = 8080;			 							//Define port
 var server = app.listen(port,function(){			//Start server instance from express.
 	console.log("glumNet server started on port",port);
 });
