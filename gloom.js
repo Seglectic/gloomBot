@@ -38,7 +38,7 @@ fs.readdir('plugins',function(err,items){
 */
 
 var Gloom = {
-	name: "SegGloom",
+	name: "Gloom",
 	server: 'irc.rizon.net',
 	options: {
 		userName: "Gloom",
@@ -87,6 +87,6 @@ Gloom.chat.addListener('message',function(nick,targ,msg){
 		case "!slap": slap(Gloom,nick,targ,smsg); break;
 	}
 
-	
 });
+
 
