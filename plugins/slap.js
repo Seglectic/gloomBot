@@ -13,7 +13,7 @@ var tally = [ //How many we slappin with?
 	'a handful',
 	'a bag of',
 	'a truckload of',
-	'TONS of'
+	'TONS of',
 	'NUM',
 ];
 
