@@ -17,10 +17,18 @@ body{
 button{
 	position: absolute;
 	float: left;
-	
+
 	border-radius: 10px;
 	margin-top: 10%;
 	margin-left: calc(50% - 128px);
 
 	box-shadow: 10px 15px 50px black;
+}
+
+svg{
+	width: 100%;
+}
+.sinner svg{
+	height:50px;
+	background-color: black;
 }
