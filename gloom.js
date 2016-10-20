@@ -22,14 +22,15 @@ var fs = require('fs');
 	Load plugins
 */
 fs.readdir('plugins',function(err,items){
+	var loadPlugs = "";
 	for (var i = items.length - 1; i >= 0; i--) {
 		if(items[i].split('.')[1]=='js'){
-			console.log("Loaded "+items[i]+" plugin.");
 			require('./plugins/'+items[i]);
+			loadPlugs+=" | "+items[i];
 		}
 	}
+	console.log("\n*** Loaded plugins:"+loadPlugs+".\n");
 });
-
 
 /*
 	Creates the main 'Gloom' object
@@ -54,7 +55,7 @@ var Gloom = {
 	Gloom's IRC object
 */
 Gloom.chat = new irc.Client(Gloom.server,Gloom.name,Gloom.options)
-console.log("Gloom initialized :3")
+console.log("\n|| Gloom initialized :3 ||" )
 
 
 /*
@@ -85,6 +86,5 @@ Gloom.chat.addListener('message',function(nick,targ,msg){
 		case "!slap": slap(Gloom,nick,targ,smsg); break;
 		case "!mew": updateJSON();break;
 	}
-
 
 });
