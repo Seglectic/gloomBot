@@ -16,4 +16,13 @@ config.plugins = [
     './plugins/debug.js'
 ]
 
+config.webplugins = [
+    './webplugins/banlist.js'
+]
+
+config.http = {}
+config.http.port = 9192
+// defualt, all iface
+config.http.addr = null
+
 module.exports = config

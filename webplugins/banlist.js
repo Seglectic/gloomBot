@@ -14,20 +14,11 @@
  * limitations under the License.
  */
 
-/*
-                                glumNet.js
-        "The net's foremost contender in all things gloomy and glum!"
+module.exports = (glum, db) => {
 
-        glumNet hosts a web display for users to see those who are banned
-        as well as anything else that needs displaying from the 'public' dir
-*/
-
-var http = require('http')
-
-module.exports = db => {
-    http.createServer((req, res) => {
+    glum.get('/banlist', (req, res) => {
         db.find({}, (err, bans) => {
             res.send(bans)
         })
-    }).listen(9999)
+    })
 }
