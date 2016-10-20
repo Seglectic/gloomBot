@@ -22,14 +22,14 @@ var fs = require('fs');
 	Load plugins
 */
 fs.readdir('plugins',function(err,items){
-	var loadPlugs = "";
+	var loadPlugs = [];
 	for (var i = items.length - 1; i >= 0; i--) {
 		if(items[i].split('.')[1]=='js'){
 			require('./plugins/'+items[i]);
-			loadPlugs+=" | "+items[i];
+			loadPlugs.push(items[i]);
 		}
 	}
-	console.log("\n*** Loaded plugins:"+loadPlugs+".\n");
+	console.log("\n*** Loaded plugins: "+loadPlugs.join(" | ")+".\n");
 });
 
 /*
