@@ -29,7 +29,9 @@ module.exports = (gloom, db) => {
         users.forEach(user => {
             setTimeout(() => {
                 gloom.send('MODE', user.chan, '-b', `*!*@${user.vhost}`)
-            }, new Date().getTime() - user.unbanAt)
+
+                db.remove({ nick: user.nick })
+            }, user.unbanAt - new Date().getTime())
         })
     })
 
@@ -66,7 +68,8 @@ module.exports = (gloom, db) => {
                     // auto unban!
                     setTimeout(() => {
                         gloom.send('MODE', chan, '-b', `*!*@${whois.host}`)
-                    }, new Date().getTime() - unbanDate)
+                        db.remove({ nick: banopts[0] })
+                    }, unbanDate - new Date().getTime() )
                 }
 
                 // add ban to db
