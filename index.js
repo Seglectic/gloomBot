@@ -21,7 +21,7 @@ var irc = require('irc'),
     config = require('./config/test'),
     app = express(),
     glum = express.Router(),
-    db = new Nedb(), // in memory... for now i guess
+    db = new Nedb(config.db),
     gloom = new irc.Client(
         config.server, 
         config.nick, 
@@ -38,9 +38,9 @@ config.webplugins.forEach(plugin => {
 })
 
 // web stuff
-app.use('/glum', glum)
-app.use('/', express.static(__dirname+'/public'))
-app.get('/', (req, res) => {
+app.use(`${config.http.root}glum`, glum)
+app.use(config.http.root, express.static(__dirname+'/public'))
+app.get(config.http.root, (req, res) => {
     res.sendfile(__dirname+'/public/index.html')
 })
 
