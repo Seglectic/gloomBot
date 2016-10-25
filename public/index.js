@@ -77,6 +77,7 @@ var view = (state, prev, send) => html`
                         type="text"
                         class="form-control" 
                         value="${state.filter}"
+                        placeholder="Filter by nick"
                         oninput=${(e) => send('filterChange', e.target.value)}>
                 </div>
             </div>
