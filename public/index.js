@@ -29,123 +29,22 @@ app.model({
             http('/glum/banlist', (err, res, body) => {
                 send('statusChange', body || [], done)
             })
-            send('banChange', [{
-                nick: 'test',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'blah',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            },{
-                nick: 'another',
-                vhost: 'test',
-                unbanAt: new Date().getTime(),
-                reason: 'yolo'
-            }
-            ], done)
+//            send('banChange', [{
+//                nick: 'test',
+//                vhost: 'test',
+//                unbanAt: new Date().getTime(),
+//                reason: 'yolo'
+//            },{
+//                nick: 'blah',
+//                vhost: 'test',
+//                unbanAt: new Date().getTime(),
+//                reason: 'yolo'
+//            },{
+//                nick: 'another',
+//                vhost: 'test',
+//                unbanAt: new Date().getTime(),
+//                reason: 'yolo'
+//            }], done)
         }
     },
     reducers: {
