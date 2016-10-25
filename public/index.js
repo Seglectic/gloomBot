@@ -17,6 +17,7 @@
 var choo = require('choo'),
     http = require('choo/http'),
     html = require('choo/html'),
+    _ = require('lodash'),
     app = choo()
 
 app.model({
@@ -27,10 +28,30 @@ app.model({
     effects: {
         getBans: (data, state, send, done) => {
             http('/glum/banlist', (err, res, body) => {
-                send('statusChange', body || [], done)
+                send('banChange', body || [], done)
             })
 //            send('banChange', [{
 //                nick: 'test',
+//                vhost: 'test',
+//                unbanAt: new Date().getTime(),
+//                reason: 'yolo'
+//            },{
+//                nick: 'blah',
+//                vhost: 'test',
+//                unbanAt: new Date().getTime(),
+//                reason: 'yolo'
+//            },{
+//                nick: 'another',
+//                vhost: 'test',
+//                unbanAt: new Date().getTime(),
+//                reason: 'yolo'
+//            },{
+//                nick: 'blah',
+//                vhost: 'test',
+//                unbanAt: new Date().getTime(),
+//                reason: 'yolo'
+//            },{
+//                nick: 'another',
 //                vhost: 'test',
 //                unbanAt: new Date().getTime(),
 //                reason: 'yolo'
@@ -83,16 +104,22 @@ var view = (state, prev, send) => html`
         </div>
         </div>
 
-        <div class="container clearfix">
-            ${state.bans.filter((ban) => {
+        <div class="container">
+            ${_.chunk(state.bans.filter((ban) => {
                 return ban.nick.indexOf(state.filter) != -1
-            }).map((ban) => {
+            }), 3).map((row) => {
                 return html`
-                    <address class="card float-sm-left">
-                        <strong>${ban.nick}</strong><br>
-                        <strong>reason</strong> ${ban.reason}<br>
-                        <strong>til</strong> ${new Date(ban.unbanAt).toISOString()}<br>
-                    </address>
+                    <div class="row text-xs-center">
+                        ${row.map((ban) => {
+                            return html`
+                                <div class="card col-md-4">
+                                    <strong>nick</strong> ${ban.nick}<br>
+                                    <strong>reason</strong> ${ban.reason}<br>
+                                    <strong>til</strong> ${new Date(ban.unbanAt).toISOString()}<br>
+                                </div>
+                            `
+                        })}
+                    </div>
                 `
             })}
         </div>
