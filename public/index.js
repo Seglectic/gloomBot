@@ -27,7 +27,7 @@ app.model({
     },
     effects: {
         getBans: (data, state, send, done) => {
-            http('/glum/banlist', (err, res, body) => {
+            http('glum/banlist', (err, res, body) => {
                 send('banChange', body || [], done)
             })
 //            send('banChange', [{
