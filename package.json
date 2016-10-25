@@ -4,7 +4,8 @@
   "description": "bot that does #depression stuff i guess",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "./node_modules/.bin/browserify public/index.js | ./node_modules/.bin/uglifyjs -m -o public/index.bundle.min.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +22,11 @@
   },
   "homepage": "https://github.com/GeneralUnRest/gloomBot#readme",
   "dependencies": {
+    "browserify": "^13.1.1",
+    "choo": "^3.3.0",
     "express": "^4.14.0",
     "irc": "^0.5.0",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony"
   }
 }

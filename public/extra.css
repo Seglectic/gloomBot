@@ -1,0 +1,10 @@
+.jumbotron {
+    border-radius: 0px;
+}
+
+.card {
+    box-shadow: 1px 1px 2px;
+    margin: 5px;
+    padding-left: 2px; 
+    padding-right: 2px;
+}

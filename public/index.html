@@ -1,41 +1,17 @@
-<head>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="jscolor.min.js"></script>
-	<script type="text/javascript" src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
-	<script type="text/javascript" src="script.js"></script>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="banlist for #depression">
+    <meta name="author" content="prussian">
 
-<body>
-	sockServe
-
-	<br>
-
-	<button
-		id = "clrBtn"
-    	class="jscolor {width:256, height:200, position:'bottom', valueElement:null,value:'66ccff'}"
-		style="width:256px; height:200px;"
-	></button>
-
-	<script>
-		/*
-			Test client JS script
-			Sends a stream of RGB values to the server
-		*/
-
-		this.sock = io.connect('http://wb.Spaghett.net:9001'); //Connect to the ledServe socket
-
-		var send = function(){
-			var clr = document.getElementById('clrBtn').style.backgroundColor;  //Gets color of button
-			clr = clr.replace('rgb(','');
-			clr = clr.replace(')','');
-			clr = clr.replace(/,/gi,'');
-			console.log(clr);
-			this.sock.emit('ledCLR',clr) //Send color through socket
-		}
-
-		setInterval(send,100);
-	</script>
-
-
-</body>
-
+    <title>banlist for #depression on Rizon</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <link rel="stylesheet" href="extra.css">
+  </head>
+  <body>
+    <script src="index.bundle.min.js"></script>
+  </body>
+</html>

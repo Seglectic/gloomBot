@@ -3,7 +3,7 @@ var config = {}
 config.server = 'irc.rizon.net'
 config.nick = 'gloombot'
 config.options = {
-    channels: ['#joe'],
+    channels: ['#prussian'],
     floodProtection: true,
     floodProtectionDelay: 300
 }
