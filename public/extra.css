@@ -1,0 +1,9 @@
+.jumbotron {
+    border-radius: 0px;
+    box-shadow: 1px 1px 2px;
+}
+
+.card {
+    box-shadow: 1px 1px 2px;
+    background-color: #fbfbfb;
+}
